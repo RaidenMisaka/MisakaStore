@@ -1,0 +1,34 @@
+﻿<?xml version="1.0" encoding="UTF-8"?> 
+<!DOCTYPE mapper PUBLIC "-//ibatis.apache.org//DTD Mapper 3.0//EN" 
+	"http://ibatis.apache.org/dtd/ibatis-3-mapper.dtd">
+
+<mapper namespace="cn.misaka.store.mapper.CityMapper">
+
+	<!-- List<City> getCityListByProvinceCode(String provinceCode); -->
+	<!-- 通过省的code查找该省下属市的对象集合 -->
+	<select id="getCityListByProvinceCode" 
+		resultType="cn.misaka.store.entity.City"
+		>
+		SELECT 
+			id,province_Code as provinceCode,city_code as cityCode,city_name as cityName	
+		FROM 
+			t_dict_cities
+		WHERE 
+			province_code=#{provinceCode} 
+	</select>
+	
+	<!-- City getCityByCode(String cityCode); -->
+	<!-- 通过code查找市数据 -->
+	<select id="getCityByCode"
+		resultType="cn.misaka.store.entity.City">
+		SELECT 
+			id,province_Code as provinceCode,city_code as cityCode,city_name as cityName
+		FROM 
+			t_dict_cities
+		WHERE 
+			city_code=#{cityCode}
+	</select>
+	
+	
+
+</mapper>

@@ -1,0 +1,95 @@
+﻿<?xml version="1.0" encoding="UTF-8"?> 
+<!DOCTYPE mapper PUBLIC "-//ibatis.apache.org//DTD Mapper 3.0//EN" 
+	"http://ibatis.apache.org/dtd/ibatis-3-mapper.dtd">
+
+<mapper namespace="cn.misaka.store.mapper.UserMapper">
+	
+	<!-- Integer insert(User user) -->
+	<insert id="insert" 
+		useGeneratedKeys="true"
+		keyProperty="id">
+		INSERT INTO t_user(
+			username,	password,	gender,
+			phone,	email,	avatar,uuid,
+			created_user,	created_time,
+			modified_user,	modified_time
+		) VALUES (
+			#{username},#{password},#{gender},
+			#{phone},	#{email},	#{avatar},#{uuid},
+			#{createdUser},	#{createdTime},
+			#{modifiedUser},	#{modifiedTime})
+	</insert>
+	
+	<!-- User findUserByUsername(String username) -->
+	<select id="findUserByUsername" 
+		resultType="cn.misaka.store.entity.User">
+			SELECT 
+			id, username,	password,	gender,
+			phone,	email,	avatar, uuid,
+			created_user createdUser,	
+			created_time createdTime,
+			modified_user modifiedUser,	
+			modified_time modifiedTime
+		FROM 
+			t_user 
+		WHERE 
+			username=#{username}
+	</select>
+	
+	<!-- User findUserById(Integer id); -->
+	<!-- 通过id查找用户数据 -->
+	<select id="findUserById"
+		resultType="cn.misaka.store.entity.User">
+		SELECT 
+			id, username,	password,	gender,
+			phone,	email,	avatar, uuid,
+			created_user createdUser,	
+			created_time createdTime,
+			modified_user modifiedUser,	
+			modified_time modifiedTime
+		FROM 
+			t_user
+		WHERE 
+			id=#{id}
+	</select>
+	
+	
+	<!-- Integer changePassword(
+			@Param("uid") Integer uid,
+			@Param("password") String password); -->
+	<!-- 修改密码 -->
+	<update id="changePassword" >
+		UPDATE t_user 
+		SET 
+			password=#{password},
+			modified_user=#{modifiedUser},
+			modified_time=#{modifiedTime}
+		WHERE id=#{uid}
+	</update>
+	
+	<!-- 修改用户信息 -->
+	<!-- Integer changeInfo(User user); -->
+	<update id="changeInfo">
+		UPDATE t_user
+		SET 
+			<if test="avatar!=null">
+			avatar=#{avatar},
+			</if>
+			<if test="username!=null">
+			username=#{username},
+			</if>
+			<if test="gender!=null">
+			gender=#{gender},
+			</if>
+			<if test="phone!=null">
+			phone=#{phone},
+			</if>
+			<if test="email!=null">
+			email=#{email},
+			</if>
+			modified_user=#{modifiedUser},
+			modified_time=#{modifiedTime}
+		WHERE
+			id=#{id}
+	</update>
+</mapper>

@@ -1,0 +1,37 @@
+﻿<?xml version="1.0" encoding="UTF-8"?> 
+<!DOCTYPE mapper PUBLIC "-//ibatis.apache.org//DTD Mapper 3.0//EN" 
+	"http://ibatis.apache.org/dtd/ibatis-3-mapper.dtd">
+
+<mapper namespace="cn.misaka.store.mapper.AreaMapper">
+
+	<!-- List<Area> getAreaListByCityCode(String CityCode); -->
+	<!-- 通过市的Code获取数据表中该市下属区的对象集合 -->
+	<select id="getAreaListByCityCode" 
+		resultType="cn.misaka.store.entity.Area">
+		SELECT 
+			id,city_code as cityCode,
+			area_code as areaCode,
+			area_name as areaName
+		FROM 
+			t_dict_areas
+		WHERE
+			city_code=#{cityCode} 
+	</select>
+	
+	<!-- Area getAreaByCode(String areaCode); -->
+	<!-- 通过code查找区数据 -->
+	<select id="getAreaByCode"
+		resultType="cn.misaka.store.entity.Area">
+		SELECT 
+			id,city_code as cityCode,
+			area_code as areaCode,
+			area_name as areaName
+		FROM 
+			t_dict_areas
+		WHERE 
+			area_code=#{areaCode}
+	</select>
+	
+	
+
+</mapper>

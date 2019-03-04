@@ -1,0 +1,27 @@
+﻿<?xml version="1.0" encoding="UTF-8"?> 
+<!DOCTYPE mapper PUBLIC "-//ibatis.apache.org//DTD Mapper 3.0//EN" 
+	"http://ibatis.apache.org/dtd/ibatis-3-mapper.dtd">
+
+<mapper namespace="cn.misaka.store.mapper.AddressMapper">
+	
+	<!-- 新增收货地址 -->
+	<!-- Integer insert(Address address) -->
+	<insert id="insert" 
+		parameterType="cn.misaka.store.entity.Address"
+		useGeneratedKeys="true"
+		keyProperty="id">
+		INSERT INTO t_address(
+			uid ,		  	recv_name,	 	recv_province,
+			recv_city,	  	recv_area,	 	recv_district,
+			recv_address, 	recv_phone,	 	recv_tel,
+			recv_zip,	  	recv_tag,		created_user,
+			created_time, 	modified_user,	modified_time
+		) VALUES (
+			#{uid},			#{recvName},	#{recvProvince},
+			#{recvCity},	#{recvArea},	#{recvDistrict},
+			#{recvAddress},	#{recvPhone},   #{recvTel},
+			#{recvZip},		#{recvTag},	 	#{createdUser},
+			#{createdTime},	#{modifiedUser},#{modifiedTime})
+	</insert>
+	
+</mapper>

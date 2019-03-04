@@ -1,0 +1,31 @@
+﻿<?xml version="1.0" encoding="UTF-8"?> 
+<!DOCTYPE mapper PUBLIC "-//ibatis.apache.org//DTD Mapper 3.0//EN" 
+	"http://ibatis.apache.org/dtd/ibatis-3-mapper.dtd">
+
+<mapper namespace="cn.misaka.store.mapper.ProvinceMapper">
+
+	<!-- List<Province> getProvinceList() -->
+	<select id="getProvinceList" 
+		resultType="cn.misaka.store.entity.Province">
+		SELECT 
+			id,province_Code as provinceCode,province_name as provinceName
+		FROM 
+			t_dict_provinces 
+	</select>
+	
+	<!-- Province getProvinceByCode(String provinceCode); -->
+	<!-- 通过code查找省数据 -->
+	<select id="getProvinceByCode"
+		resultType="cn.misaka.store.entity.Province">
+		SELECT 
+			id,province_Code as provinceCode,
+			province_name as provinceName
+		FROM 
+			t_dict_provinces
+		WHERE 
+			province_code=#{provinceCode}
+	</select>
+	
+	
+
+</mapper>

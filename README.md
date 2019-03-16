@@ -1,2 +1,2 @@
 # MisakaStore
-a online store project 
+SpringMVC project
